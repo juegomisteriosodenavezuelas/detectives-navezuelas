@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acertijos — Detectives de Navezuelas</title>
+<meta name="description" content="Todos los casos de los Detectives de Navezuelas: acertijos, pistas y el marcador de puntos de la investigación.">
+<link rel="icon" href="Detective.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-bar">
+    <a class="brand" href="index.html">
+      <img src="Detective.png" alt="Los Detectives de Navezuelas" class="brand-logo">
+      <span class="brand-text">Los Detectives<br><small>de Navezuelas</small></span>
+    </a>
+    <span class="points-badge" id="header-points">★ 0 pts</span>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+      <span class="visually-hidden">Abrir menú</span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="main-nav" id="main-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="acertijos.html" aria-current="page">Acertijos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="container">
+      <h1>Acertijos</h1>
+      <p>Cada acertijo resuelto suma puntos. Cada punto abre nuevas puertas. Un nuevo caso llega cada día a las 15:30.</p>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-stats">
+          <span id="resumen-resueltos">0 / 0 resueltos</span>
+          <span id="resumen-puntos">0 puntos</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="acertijos-grid" id="acertijos-grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">🕵️ Los Detectives de Navezuelas</div>
+  <p>Cuartel general de la investigación · Villuercas, Extremadura</p>
+</footer>
+
+<script src="js/acertijos-data.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/acertijos.js"></script>
+</body>
+</html>

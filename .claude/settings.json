@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"c:/xampp/htdocs/detectives-navezuelas/css\" \"c:/xampp/htdocs/detectives-navezuelas/js\" && ls \"c:/xampp/htdocs/detectives-navezuelas\")",
+      "Bash(node -e \"console.log\\('café'.normalize\\('NFD'\\).replace\\(/[̀-ͯ]/g,''\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost/detectives-navezuelas/index.html)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(npm ls *)",
+      "Read(//c/xampp/htdocs/CinematicRoute/**)",
+      "Bash(npx --no-install playwright --version)",
+      "Read(//c//**)",
+      "Bash(tasklist)",
+      "Read(//c/Program Files \\\\\\(x86\\\\\\)/Microsoft/Edge/Application/**)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)"
+    ],
+    "additionalDirectories": [
+      "c:\\xampp\\htdocs\\detectives-navezuelas"
+    ]
+  }
+}

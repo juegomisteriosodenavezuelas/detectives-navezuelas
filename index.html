@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Detectives de Navezuelas</title>
+<meta name="description" content="Un misterio de verano para tres hermanos detectives en Navezuelas, Villuercas. Acertijos diarios, puntos y regalos escondidos por descubrir.">
+<link rel="icon" href="Detective.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-bar">
+    <a class="brand" href="index.html">
+      <img src="Detective.png" alt="Los Detectives de Navezuelas" class="brand-logo">
+      <span class="brand-text">Los Detectives<br><small>de Navezuelas</small></span>
+    </a>
+    <span class="points-badge" id="header-points">★ 0 pts</span>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+      <span class="visually-hidden">Abrir menú</span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="main-nav" id="main-nav">
+    <ul>
+      <li><a href="index.html" aria-current="page">Inicio</a></li>
+      <li><a href="acertijos.html">Acertijos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <img src="Detective.png" alt="Detective misterioso con lupa, junto a un cartel de Villuercas, Extremadura" class="hero-portrait">
+      <h1>Los Detectives de Navezuelas</h1>
+      <p class="tagline">Un misterio de verano en el corazón de Villuercas.</p>
+      <div class="cta-row">
+        <a href="acertijos.html" class="btn btn-primary">Ver los acertijos</a>
+        <a href="contacto.html" class="btn btn-secondary">Contactar con el detective</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="carta">
+        <p>Este verano, tres hermanos de Navezuelas recibieron una carta misteriosa en su buzón.</p>
+        <p>No sabían quién la enviaba. No sabían qué les esperaba. Solo sabían que alguien, en algún lugar, había preparado algo especial para ellos.</p>
+        <p>Desde ese día, Héctor, Martín y Carlota se convirtieron en detectives. Han descifrado mensajes en clave César, han resuelto misterios de circo, han identificado animales de todo el mundo y han buscado pistas escondidas por su pueblo.</p>
+        <p>Cada día, a las 15:30, llega un nuevo reto al correo secreto de la investigación. Cada acertijo resuelto suma puntos. Cada punto abre nuevas puertas.</p>
+        <p>Y en algún lugar de Navezuelas... hay regalos esperando a ser encontrados.</p>
+        <p><strong>La aventura acaba de empezar.</strong></p>
+        <p>Esta página es el cuartel general de los Detectives de Navezuelas. Aquí encontraréis vuestros acertijos, vuestro marcador de puntos, y todo lo que necesitáis para seguir la investigación.</p>
+        <p class="firma">Bienvenidos, detectives.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 style="text-align:center;">Cómo funciona la investigación</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <span class="icon">🔍</span>
+          <h3>Un reto cada día</h3>
+          <p>A las 15:30 llega un nuevo acertijo al correo secreto de la investigación.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🏆</span>
+          <h3>Puntos que abren puertas</h3>
+          <p>Cada caso resuelto suma puntos. Cuantos más puntos, más cerca estáis de la verdad.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🎁</span>
+          <h3>Regalos escondidos</h3>
+          <p>En algún lugar de Navezuelas hay recompensas esperando a ser encontradas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">🕵️ Los Detectives de Navezuelas</div>
+  <p>Cuartel general de la investigación · Villuercas, Extremadura</p>
+</footer>
+
+<script src="js/acertijos-data.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
