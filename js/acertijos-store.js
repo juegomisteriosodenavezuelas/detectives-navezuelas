@@ -7,7 +7,7 @@
      progreso se guarda en localStorage (ver progress.js). */
 (function () {
   function normalizar(texto) {
-    return texto.toString().trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return texto.toString().trim().replace(/\s+/g, ' ').toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   }
 
   function listaEstatica() {

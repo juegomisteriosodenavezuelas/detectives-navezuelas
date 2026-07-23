@@ -17,8 +17,10 @@
         ? '<span class="badge badge-nuevo">Nuevo</span>'
         : '<span class="badge badge-bloqueado">Bloqueado</span>';
 
+    var estadoClase = acertijo.resuelto ? 'resuelto' : 'pendiente';
+
     var el = document.createElement(desbloqueado ? 'a' : 'div');
-    el.className = 'acertijo-card' + (desbloqueado ? '' : ' locked');
+    el.className = 'acertijo-card ' + estadoClase + (desbloqueado ? '' : ' locked');
     if (desbloqueado) el.href = 'acertijo.html?id=' + encodeURIComponent(acertijo.id);
 
     el.innerHTML =

@@ -16,6 +16,7 @@
   --color-accent: #2f5233;
   --color-accent-light: #4a7a52;
   --color-gold: #c9962f;
+  --color-orange: #b5651d;
   --color-danger: #8a3324;
   --color-success: #2f5233;
   --shadow-card: 0 2px 4px rgba(36, 29, 23, 0.15), 0 8px 16px rgba(36, 29, 23, 0.1);
@@ -444,11 +445,25 @@ section { padding: 1.6rem 0; }
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
+.acertijo-card.resuelto {
+  background-color: #edf4e8;
+  border-color: rgba(47, 82, 51, 0.3);
+  box-shadow: inset 3px 0 0 var(--color-accent), var(--shadow-card);
+}
+
+.acertijo-card.pendiente {
+  background-color: #fbeee0;
+  border-color: rgba(181, 101, 29, 0.28);
+  box-shadow: inset 3px 0 0 var(--color-orange), var(--shadow-card);
+}
+
 .acertijo-card:hover { border-color: var(--color-gold); transform: translateY(-2px); }
 
 .acertijo-card.locked {
-  opacity: 0.65;
+  opacity: 0.7;
   cursor: not-allowed;
+  background-color: #f3e8e3;
+  box-shadow: inset 3px 0 0 var(--color-danger), var(--shadow-card);
 }
 
 .acertijo-card .numero {
@@ -477,9 +492,9 @@ section { padding: 1.6rem 0; }
   letter-spacing: 0.03em;
 }
 
-.badge-nuevo { background: rgba(47, 82, 51, 0.15); color: var(--color-success); }
-.badge-resuelto { background: rgba(201, 150, 47, 0.2); color: var(--color-primary-dark); }
-.badge-bloqueado { background: rgba(138, 51, 36, 0.12); color: var(--color-danger); }
+.badge-nuevo { background: rgba(181, 101, 29, 0.16); color: var(--color-orange); }
+.badge-resuelto { background: rgba(47, 82, 51, 0.18); color: var(--color-success); }
+.badge-bloqueado { background: rgba(138, 51, 36, 0.14); color: var(--color-danger); }
 .badge-puntos { background: rgba(122, 82, 48, 0.12); color: var(--color-primary-dark); }
 
 /* ---------- Detalle de acertijo ---------- */

@@ -66,8 +66,8 @@ begin
     return;
   end if;
 
-  if upper(trim(unaccent(p_respuesta))) = any (
-    select upper(trim(unaccent(r))) from unnest(fila.respuestas) as r
+  if upper(unaccent(regexp_replace(trim(p_respuesta), '\s+', ' ', 'g'))) = any (
+    select upper(unaccent(regexp_replace(trim(r), '\s+', ' ', 'g'))) from unnest(fila.respuestas) as r
   ) then
     if not fila.resuelto then
       update acertijos set resuelto = true, resuelto_en = now() where id = p_id;
