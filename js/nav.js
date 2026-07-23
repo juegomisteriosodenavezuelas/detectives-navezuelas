@@ -2,8 +2,10 @@
 (function () {
   function actualizarBadge() {
     var badge = document.getElementById('header-points');
-    if (!badge || !window.Progress) return;
-    badge.textContent = '★ ' + window.Progress.totalPuntos() + ' pts';
+    if (!badge || !window.AcertijosStore) return;
+    window.AcertijosStore.totalPuntos().then(function (puntos) {
+      badge.textContent = '★ ' + puntos + ' pts';
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {

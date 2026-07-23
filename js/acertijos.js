@@ -11,8 +11,7 @@
 
   function crearTarjeta(acertijo) {
     var desbloqueado = estaDesbloqueado(acertijo);
-    var resuelto = window.Progress.estaResuelto(acertijo.id);
-    var estadoBadge = resuelto
+    var estadoBadge = acertijo.resuelto
       ? '<span class="badge badge-resuelto">Resuelto</span>'
       : desbloqueado
         ? '<span class="badge badge-nuevo">Nuevo</span>'
@@ -39,20 +38,22 @@
     var grid = document.getElementById('acertijos-grid');
     if (!grid) return;
 
-    grid.innerHTML = '';
-    window.ACERTIJOS
-      .slice()
-      .sort(function (a, b) { return a.numero - b.numero; })
-      .forEach(function (acertijo) { grid.appendChild(crearTarjeta(acertijo)); });
+    window.AcertijosStore.obtenerLista().then(function (lista) {
+      grid.innerHTML = '';
+      lista
+        .slice()
+        .sort(function (a, b) { return a.numero - b.numero; })
+        .forEach(function (acertijo) { grid.appendChild(crearTarjeta(acertijo)); });
 
-    var resueltos = window.ACERTIJOS.filter(function (a) { return window.Progress.estaResuelto(a.id); }).length;
-    var total = window.ACERTIJOS.length;
-    var puntos = window.Progress.totalPuntos();
-    var pct = total ? Math.round((resueltos / total) * 100) : 0;
+      var resueltos = lista.filter(function (a) { return a.resuelto; }).length;
+      var total = lista.length;
+      var puntos = lista.reduce(function (t, a) { return t + (a.resuelto ? a.puntos : 0); }, 0);
+      var pct = total ? Math.round((resueltos / total) * 100) : 0;
 
-    document.getElementById('resumen-resueltos').textContent = resueltos + ' / ' + total + ' resueltos';
-    document.getElementById('resumen-puntos').textContent = puntos + ' puntos';
-    document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('resumen-resueltos').textContent = resueltos + ' / ' + total + ' resueltos';
+      document.getElementById('resumen-puntos').textContent = puntos + ' puntos';
+      document.getElementById('progress-fill').style.width = pct + '%';
+    });
   }
 
   document.addEventListener('DOMContentLoaded', render);

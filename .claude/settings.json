@@ -15,7 +15,8 @@
       "Read(//c/Program Files/Google/Chrome/Application/**)",
       "Bash(git --version)",
       "Bash(gh --version)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(curl -s -H 'apikey: sb_publishable_gBDFMcQwDrUsqW2x2bDyFw_aLkedOPe' -H 'Authorization: Bearer sb_publishable_gBDFMcQwDrUsqW2x2bDyFw_aLkedOPe' 'https://udoymnqjylclpkbtbyhw.supabase.co/rest/v1/acertijos?select=id,numero,titulo,puntos,resuelto&order=numero.asc')"
     ],
     "additionalDirectories": [
       "c:\\xampp\\htdocs\\detectives-navezuelas"

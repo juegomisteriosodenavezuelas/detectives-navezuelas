@@ -1,6 +1,6 @@
 /* Código de 9 símbolos de la página de Contacto.
-   Sin Firebase activado, se compara contra un código de demostración local.
-   Con Firebase activado, se consulta la colección "secretos" (ver README.md). */
+   Sin Supabase activado, se compara contra un código de demostración local.
+   Con Supabase activado, se consulta la tabla "secretos" (ver SUPABASE-SETUP.md). */
 (function () {
   var DEMO = {
     codigo: 'N4V3ZU3L4',
@@ -42,8 +42,8 @@
   }
 
   function verificar(codigo) {
-    if (window.FIREBASE_ENABLED) {
-      return import('./firebase-sync.mjs')
+    if (window.SUPABASE_ENABLED) {
+      return import('./supabase-sync.mjs')
         .then(function (mod) { return mod.verificarCodigoContacto(codigo); })
         .catch(function () { return null; })
         .then(function (datos) { return datos || (codigo === DEMO.codigo ? DEMO : null); });

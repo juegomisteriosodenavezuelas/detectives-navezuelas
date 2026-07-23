@@ -1,5 +1,7 @@
-/* Datos de los acertijos. Añade uno nuevo copiando un bloque y cambiando
-   id, numero, fecha (cuándo se desbloquea), enunciado, pista y respuestas. */
+/* Datos de ejemplo de los acertijos, usados solo cuando Supabase está
+   desactivado (window.SUPABASE_ENABLED = false en js/supabase-config.js).
+   Con Supabase activado, el contenido real vive en la tabla "acertijos"
+   (ver supabase/schema.sql) y este archivo se ignora. */
 window.ACERTIJOS = [
   {
     id: 'cifrado-cesar',

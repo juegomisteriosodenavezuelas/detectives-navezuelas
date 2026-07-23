@@ -12,14 +12,17 @@ acertijos.html       Lista de casos, con marcador de puntos
 acertijo.html         Plantilla de detalle (se usa como acertijo.html?id=...)
 contacto.html         Línea secreta con el código de 9 símbolos
 css/style.css         Estilos (mobile-first)
-js/acertijos-data.js   Datos de los acertijos (editar aquí para añadir casos)
-js/progress.js         Progreso del equipo (localStorage + Firebase)
-js/nav.js               Menú móvil y marcador de puntos del cabecero
-js/acertijos.js          Lógica de la página de lista
-js/acertijo-detail.js     Lógica de la página de detalle
-js/contacto.js            Lógica del código de 9 símbolos
-js/firebase-config.js      Configuración de Firebase (rellenar cuando se active)
-js/firebase-sync.mjs        Llamadas a Firestore, cargado solo si Firebase está activado
+js/acertijos-data.js   Datos de ejemplo, solo se usan si Supabase está desactivado
+js/acertijos-store.js   Acceso a los acertijos (Supabase si está activo, si no los datos de ejemplo)
+js/progress.js           Progreso local de respaldo (localStorage), solo sin Supabase
+js/nav.js                 Menú móvil y marcador de puntos del cabecero
+js/acertijos.js            Lógica de la página de lista
+js/acertijo-detail.js       Lógica de la página de detalle
+js/contacto.js              Lógica del código de 9 símbolos
+js/supabase-config.js        Configuración de Supabase (rellenar cuando se active)
+js/supabase-sync.mjs          Llamadas a Supabase, cargado solo si Supabase está activado
+supabase/schema.sql            Tablas, políticas y funciones de la base de datos
+SUPABASE-SETUP.md                Guía paso a paso para crear el proyecto y la base de datos
 ```
 
 ## Publicar en GitHub Pages
@@ -32,71 +35,42 @@ No hace falta ningún paso de compilación: todo es HTML/CSS/JS plano.
 
 ## Añadir un acertijo nuevo
 
-Edita `js/acertijos-data.js` y añade un objeto al array `ACERTIJOS`:
+**Con Supabase activado** (recomendado, ver más abajo): añade una fila en
+la tabla `acertijos` desde el Table Editor de Supabase. No hace falta tocar
+código ni crear una página HTML por caso: `acertijo.html` es una plantilla
+que carga el contenido según el `id` de la URL (`acertijo.html?id=tu-id`).
+Detalles de cada columna en [`SUPABASE-SETUP.md`](SUPABASE-SETUP.md).
 
-```js
-{
-  id: 'identificador-unico',       // usado en la URL: acertijo.html?id=identificador-unico
-  numero: 5,
-  fecha: '2026-07-24T15:30:00',    // el caso se desbloquea automáticamente a partir de esta fecha
-  titulo: 'Título del caso',
-  categoria: 'Categoría',
-  dificultad: 'Fácil',
-  puntos: 15,
-  enunciado: 'Texto del acertijo...',
-  pista: 'Pista opcional...',
-  respuestas: ['RESPUESTA', 'SINONIMO ACEPTADO']  // se comparan sin tildes y en mayúsculas
-}
-```
-
-No se necesita crear una página HTML por acertijo: `acertijo.html` es una
-plantilla que carga el contenido correspondiente según el `id` de la URL.
+**Sin Supabase** (modo de demostración): edita `js/acertijos-data.js` y
+añade un objeto al array `ACERTIJOS`, con la misma forma que los de
+ejemplo (`id`, `numero`, `fecha`, `titulo`, `categoria`, `dificultad`,
+`puntos`, `enunciado`, `pista`, `respuestas`).
 
 ## El código de contacto (9 símbolos)
 
 Por defecto, `js/contacto.js` acepta el código de demostración `N4V3ZU3L4`
-y muestra un mensaje y teléfono de ejemplo. Para cambiarlos sin usar Firebase,
+y muestra un mensaje y teléfono de ejemplo. Para cambiarlos sin usar Supabase,
 edita el objeto `DEMO` al principio de `js/contacto.js`.
 
-## Progreso del equipo y Firebase (opcional)
+## Los acertijos y Supabase (opcional)
 
-El progreso (qué casos están resueltos) se guarda siempre en `localStorage`
-del navegador, así que la web funciona sin configurar nada más. Si queréis
-que el progreso se comparta entre varios dispositivos (por ejemplo, el móvil
-de cada hermano), activad Firestore:
+Sin configurar nada, la web funciona con los 4 casos de ejemplo de
+`js/acertijos-data.js` y guarda el progreso en `localStorage` (por
+dispositivo, no compartido).
 
-1. Cread un proyecto gratuito en <https://console.firebase.google.com>.
-2. **Build → Firestore Database → Crear base de datos** (modo producción).
-3. **Configuración del proyecto → Vuestras apps → Añadir app web**, copiad
-   el objeto de configuración.
-4. Pegad esos valores en `js/firebase-config.js` y cambiad
-   `FIREBASE_ENABLED` a `true`.
-5. En **Firestore → Reglas**, usad algo como:
+Activando Supabase, el contenido de cada caso, sus puntos y si está
+resuelto o no viven en la tabla `acertijos`, compartida por todos los
+dispositivos: en cuanto alguien acierta un caso desde su móvil, aparece
+resuelto en cualquier otro. Sigue la guía paso a paso de
+[`SUPABASE-SETUP.md`](SUPABASE-SETUP.md) (el SQL para crear todo está en
+[`supabase/schema.sql`](supabase/schema.sql)).
 
-   ```
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       match /equipos/{equipoId} {
-         allow read, write: if true;
-       }
-       match /secretos/{codigo} {
-         allow read: if true;
-         allow write: if false;
-       }
-     }
-   }
-   ```
+Resumen rápido una vez tengáis vuestro proyecto de Supabase:
 
-   Esto es intencionadamente sencillo (sin autenticación) porque es un juego
-   familiar, no una aplicación con datos sensibles. `allow write: if false`
-   en `secretos` impide que cualquiera escriba códigos nuevos desde el
-   navegador; esos documentos se crean a mano desde la consola de Firebase.
+1. Ejecutad `supabase/schema.sql` en el SQL Editor de Supabase.
+2. Pegad la **Project URL** y la clave **anon/public** de vuestro proyecto
+   en `js/supabase-config.js` (nunca la clave `service_role`/`secret`).
+3. Cambiad `SUPABASE_ENABLED` a `true`.
 
-6. Para usar el código de contacto desde Firestore en vez del código de
-   demostración, cread manualmente en la consola un documento en la colección
-   `secretos` cuyo ID sea el código (por ejemplo `secretos/N4V3ZU3L4`) con
-   los campos `mensaje` y `telefono`.
-
-Con `FIREBASE_ENABLED = false` (valor por defecto), nada de esto se usa y la
-web funciona igualmente con el almacenamiento local del navegador.
+Con `SUPABASE_ENABLED = false` (valor por defecto), nada de esto se usa y la
+web funciona igualmente con los datos de ejemplo y el almacenamiento local.
