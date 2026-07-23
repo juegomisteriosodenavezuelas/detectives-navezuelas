@@ -13,6 +13,20 @@
 </head>
 <body>
 
+<div id="login-gate" class="login-gate" role="alert" aria-live="polite">
+  <div class="gate-frame" id="gate-visual">
+    <img src="Detective.png" alt="Escaneando rostro" class="gate-foto">
+    <span class="gate-scanline"></span>
+  </div>
+  <p class="gate-status" id="gate-status">No toquéis la pantalla.</p>
+  <p class="gate-hint">Sistema de reconocimiento facial · Cuartel General de Navezuelas</p>
+</div>
+<script>
+  if (sessionStorage.getItem('navezuelasAutenticado') === 'true') {
+    document.getElementById('login-gate').style.display = 'none';
+  }
+</script>
+
 <header class="site-header">
   <div class="header-bar">
     <a class="brand" href="index.html">
@@ -96,5 +110,6 @@
 <script src="js/progress.js"></script>
 <script src="js/acertijos-store.js"></script>
 <script src="js/nav.js"></script>
+<script src="js/login-gate.js"></script>
 </body>
 </html>

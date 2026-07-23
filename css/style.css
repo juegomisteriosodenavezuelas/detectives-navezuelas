@@ -662,3 +662,147 @@ section { padding: 1.6rem 0; }
 }
 
 main { flex: 1; }
+
+/* ---------- Puerta de acceso (falso reconocimiento facial) ---------- */
+
+html.gate-lock,
+html.gate-lock body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.login-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at 50% 30%, var(--color-header-alt), var(--color-header) 70%);
+  color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: opacity 0.6s ease;
+}
+
+.login-gate.gate-oculto {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gate-frame {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-gold);
+  box-shadow: 0 0 0 6px rgba(201, 150, 47, 0.15), 0 0 30px rgba(201, 150, 47, 0.25);
+  transition: width 0.4s ease, height 0.4s ease, border-radius 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gate-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gate-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 4%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #7cffb2, transparent);
+  box-shadow: 0 0 12px 2px rgba(124, 255, 178, 0.7);
+  animation: gate-scan 2.1s ease-in-out infinite;
+}
+
+@keyframes gate-scan {
+  0% { top: 4%; }
+  50% { top: 92%; }
+  100% { top: 4%; }
+}
+
+.gate-status {
+  font-family: "Special Elite", monospace;
+  font-size: 1.05rem;
+  min-height: 2.6em;
+  white-space: pre-line;
+  max-width: 320px;
+}
+
+.gate-status-anim { animation: gate-fade 0.5s ease; }
+
+@keyframes gate-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.gate-hint {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(244, 236, 216, 0.5);
+}
+
+/* Éxito: reconocimiento facial completado */
+
+.login-gate.gate-exito .gate-frame {
+  width: min(320px, 78vw);
+  height: auto;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 6px rgba(74, 122, 82, 0.2), 0 0 30px rgba(74, 122, 82, 0.3);
+}
+
+.login-gate.gate-exito .gate-scanline { display: none; }
+.login-gate.gate-exito .gate-status { color: #bfe3c4; }
+
+/* Alerta: acceso no autorizado */
+
+.login-gate.gate-alerta {
+  background: radial-gradient(circle at 50% 30%, #4a231c, var(--color-header) 70%);
+}
+
+.login-gate.gate-alerta .gate-scanline { display: none; }
+
+.login-gate.gate-alerta .gate-frame {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 6px rgba(138, 51, 36, 0.25), 0 0 30px rgba(138, 51, 36, 0.35);
+}
+
+.login-gate.gate-alerta .gate-status {
+  color: #ffb4a3;
+  animation: shake 0.4s;
+}
+
+/* ---------- Página de acceso denegado ---------- */
+
+.acceso-denegado {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.acceso-denegado .container { max-width: 420px; }
+
+.denegado-imagen {
+  width: 130px;
+  margin: 0 auto 1.1rem;
+  border-radius: 50%;
+  filter: grayscale(70%) brightness(0.8);
+  border: 3px solid var(--color-danger);
+}
+
+.denegado-mensaje {
+  font-family: "Special Elite", monospace;
+  color: var(--color-danger);
+  font-size: 1.15rem;
+}
