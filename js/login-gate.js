@@ -7,8 +7,27 @@
      directamente a la página, sin aviso ni espera. */
 (function () {
   var SESSION_KEY = 'navezuelasAutenticado';
+  var REGISTRO_LOCAL_KEY = 'navezuelasAccesos';
   var overlay = document.getElementById('login-gate');
   if (!overlay) return;
+
+  function registrarAccesoLocal(resultado) {
+    try {
+      var registros = JSON.parse(localStorage.getItem(REGISTRO_LOCAL_KEY) || '[]');
+      registros.unshift({ creado_en: new Date().toISOString(), resultado: resultado });
+      localStorage.setItem(REGISTRO_LOCAL_KEY, JSON.stringify(registros.slice(0, 200)));
+    } catch (e) {}
+  }
+
+  function registrarAcceso(resultado) {
+    if (window.SUPABASE_ENABLED) {
+      import('./supabase-sync.mjs')
+        .then(function (mod) { return mod.registrarAcceso(resultado); })
+        .catch(function () { registrarAccesoLocal(resultado); });
+    } else {
+      registrarAccesoLocal(resultado);
+    }
+  }
 
   if (sessionStorage.getItem(SESSION_KEY) === 'true') {
     overlay.remove();
@@ -58,6 +77,8 @@
     overlay.classList.add('gate-exito');
     visual.innerHTML = '<img src="Detectives reales.png" alt="Héctor, Martín y Carlota, los detectives reales" class="gate-foto">';
     mostrarTexto('Acceso concedido.\nBienvenidos, detectives.');
+    window.dispatchEvent(new CustomEvent('navezuelas:autenticado'));
+    registrarAcceso('exito');
     programar(cerrarPuerta, 3000);
   }
 
@@ -74,6 +95,7 @@
     limpiarTemporizadores();
     overlay.classList.add('gate-alerta');
     mostrarTexto('Inicio de sesión no autorizado.\nSolo Héctor, Martín y Carlota pueden iniciar sesión.');
+    registrarAcceso('fallo');
     setTimeout(function () {
       window.location.href = 'acceso-denegado.html';
     }, 1800);
@@ -86,6 +108,8 @@
     document.documentElement.classList.remove('gate-lock');
     sessionStorage.setItem(SESSION_KEY, 'true');
     overlay.remove();
+    window.dispatchEvent(new CustomEvent('navezuelas:autenticado'));
+    registrarAcceso('admin');
   }
 
   overlay.addEventListener('click', function () {

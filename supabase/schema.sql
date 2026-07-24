@@ -25,14 +25,36 @@ create table secretos (
   telefono text not null
 );
 
+-- Registro de cada visita a la puerta de entrada (index.html): cuándo y
+-- si fue un acceso normal ("exito"), un toque no autorizado ("fallo") o
+-- la entrada de administrador con doble toque ("admin"). Lo consulta la
+-- página oculta inicios.html.
+create table accesos (
+  id bigint generated always as identity primary key,
+  creado_en timestamptz not null default now(),
+  resultado text not null check (resultado in ('exito', 'fallo', 'admin'))
+);
+
 alter table acertijos enable row level security;
 alter table secretos enable row level security;
+alter table accesos enable row level security;
 
 create policy "acertijos_lectura_publica" on acertijos
   for select using (true);
 
 create policy "secretos_lectura_publica" on secretos
   for select using (true);
+
+-- Cualquiera puede añadir un registro (lo hace la propia web al entrar),
+-- y también se puede leer: no hay ninguna respuesta ni dato sensible
+-- aquí, solo una marca de tiempo y un resultado.
+create policy "accesos_insercion_publica" on accesos
+  for insert with check (true);
+
+create policy "accesos_lectura_publica" on accesos
+  for select using (true);
+
+grant select, insert on accesos to anon, authenticated;
 
 -- El navegador solo puede leer las columnas públicas de "acertijos".
 -- La columna "respuestas" queda oculta: la respuesta correcta nunca

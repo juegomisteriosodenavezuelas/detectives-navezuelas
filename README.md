@@ -7,22 +7,29 @@ con GitHub Pages.
 ## Estructura
 
 ```
-index.html          Portada: introducción a la historia
-acertijos.html       Lista de casos, con marcador de puntos
-acertijo.html         Plantilla de detalle (se usa como acertijo.html?id=...)
-contacto.html         Línea secreta con el código de 9 símbolos
-css/style.css         Estilos (mobile-first)
-js/acertijos-data.js   Datos de ejemplo, solo se usan si Supabase está desactivado
+index.html              Portada: introducción a la historia y puerta de acceso
+acertijos.html          Lista de casos, con marcador de puntos
+acertijo.html           Plantilla de detalle (se usa como acertijo.html?id=...)
+contacto.html           Línea secreta con el código de 9 símbolos
+acceso-denegado.html    Pantalla de acceso no autorizado (ver puerta de entrada)
+inicios.html            Registro de accesos, oculta, no enlazada desde ningún menú
+
+css/style.css           Estilos (mobile-first)
+
+js/acertijos-data.js    Datos de ejemplo, solo se usan si Supabase está desactivado
 js/acertijos-store.js   Acceso a los acertijos (Supabase si está activo, si no los datos de ejemplo)
-js/progress.js           Progreso local de respaldo (localStorage), solo sin Supabase
-js/nav.js                 Menú móvil y marcador de puntos del cabecero
-js/acertijos.js            Lógica de la página de lista
-js/acertijo-detail.js       Lógica de la página de detalle
-js/contacto.js              Lógica del código de 9 símbolos
-js/supabase-config.js        Configuración de Supabase (rellenar cuando se active)
-js/supabase-sync.mjs          Llamadas a Supabase, cargado solo si Supabase está activado
-supabase/schema.sql            Tablas, políticas y funciones de la base de datos
-SUPABASE-SETUP.md                Guía paso a paso para crear el proyecto y la base de datos
+js/progress.js          Progreso local de respaldo (localStorage), solo sin Supabase
+js/nav.js               Menú móvil, marcador de puntos y foto real tras el login
+js/login-gate.js        Puerta de entrada falsa (reconocimiento facial) en index.html
+js/inicios.js           Lógica de la página oculta de registro de accesos
+js/acertijos.js         Lógica de la página de lista
+js/acertijo-detail.js   Lógica de la página de detalle
+js/contacto.js          Lógica del código de 9 símbolos
+js/supabase-config.js   Configuración de Supabase (rellenar cuando se active)
+js/supabase-sync.mjs    Llamadas a Supabase, cargado solo si Supabase está activado
+
+supabase/schema.sql     Tablas, políticas y funciones de la base de datos
+SUPABASE-SETUP.md       Guía paso a paso para crear el proyecto y la base de datos
 ```
 
 ## Publicar en GitHub Pages

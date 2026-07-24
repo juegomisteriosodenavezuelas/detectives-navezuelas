@@ -41,3 +41,20 @@ export async function verificarCodigoContacto(codigo) {
   if (error || !data) return null;
   return data;
 }
+
+export async function registrarAcceso(resultado) {
+  const supabase = obtenerCliente();
+  const { error } = await supabase.from('accesos').insert({ resultado });
+  if (error) throw error;
+}
+
+export async function obtenerAccesos(limite) {
+  const supabase = obtenerCliente();
+  const { data, error } = await supabase
+    .from('accesos')
+    .select('id, creado_en, resultado')
+    .order('creado_en', { ascending: false })
+    .limit(limite || 200);
+  if (error) return null;
+  return data;
+}

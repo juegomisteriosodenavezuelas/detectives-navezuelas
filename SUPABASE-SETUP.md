@@ -38,17 +38,50 @@ Ese script crea:
   os convenga (ver "Añadir o editar un acertijo" más abajo).
 - **`secretos`**: el código de Contacto de 9 símbolos y el mensaje/teléfono
   que se revela al acertarlo.
+- **`accesos`**: un registro de cada visita a la puerta de entrada
+  (`index.html`), con su fecha y si fue un acceso normal (`exito`), un
+  toque no autorizado (`fallo`) o la entrada de administrador con doble
+  toque (`admin`). Se consulta desde la página oculta `inicios.html`.
 - Una función `comprobar_respuesta(id, respuesta)` que compara la
   respuesta **dentro** de la base de datos y marca el caso como resuelto
   si acierta. Gracias a esto, la respuesta correcta nunca se envía al
   navegador: solo se puede leer el contenido del acertijo, nunca su
   columna `respuestas`.
 
+Si ya tenías el proyecto creado antes de que existiera `accesos` en
+`supabase/schema.sql`, no hace falta rehacer nada: pega solo este bloque en
+el SQL Editor y pulsa **Run** (el resto de tablas no se ven afectadas):
+
+```sql
+create table accesos (
+  id bigint generated always as identity primary key,
+  creado_en timestamptz not null default now(),
+  resultado text not null check (resultado in ('exito', 'fallo', 'admin'))
+);
+
+alter table accesos enable row level security;
+
+create policy "accesos_insercion_publica" on accesos
+  for insert with check (true);
+
+create policy "accesos_lectura_publica" on accesos
+  for select using (true);
+
+grant select, insert on accesos to anon, authenticated;
+```
+
 Esto es intencionadamente sencillo (sin usuarios ni contraseñas) porque es
 un juego familiar, no una aplicación con datos sensibles: cualquiera con la
 web puede leer los acertijos y marcar uno como resuelto acertando la
 respuesta, pero nadie puede leer las respuestas directamente ni alterar
 puntos o contenido desde el navegador.
+
+`inicios.html` (el registro de accesos) no aparece en ningún menú y no está
+enlazada desde ninguna otra página, pero no es una contraseña real: solo
+es difícil de encontrar. La tabla `accesos` no contiene nada sensible (solo
+una fecha y "éxito/fallo/admin"), así que esto es suficiente para un juego
+familiar, pero no lo trates como un panel de administración protegido de
+verdad.
 
 ## 3. Obtener la URL y la clave del proyecto
 

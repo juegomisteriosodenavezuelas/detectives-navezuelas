@@ -19,6 +19,7 @@
   --color-orange: #b5651d;
   --color-danger: #8a3324;
   --color-success: #2f5233;
+  --color-admin: #2f5170;
   --shadow-card: 0 2px 4px rgba(36, 29, 23, 0.15), 0 8px 16px rgba(36, 29, 23, 0.1);
   --radius: 10px;
   --max-width: 960px;
@@ -496,6 +497,39 @@ section { padding: 1.6rem 0; }
 .badge-resuelto { background: rgba(47, 82, 51, 0.18); color: var(--color-success); }
 .badge-bloqueado { background: rgba(138, 51, 36, 0.14); color: var(--color-danger); }
 .badge-puntos { background: rgba(122, 82, 48, 0.12); color: var(--color-primary-dark); }
+.badge-admin { background: rgba(47, 81, 112, 0.15); color: var(--color-admin); }
+
+/* ---------- Registro de accesos (inicios.html) ---------- */
+
+.accesos-resumen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.accesos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.acceso-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  background: var(--color-paper);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  box-shadow: var(--shadow-card);
+}
+
+.acceso-fecha {
+  font-family: "Special Elite", monospace;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
 
 /* ---------- Detalle de acertijo ---------- */
 
