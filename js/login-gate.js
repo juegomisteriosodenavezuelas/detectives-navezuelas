@@ -44,9 +44,9 @@
   var temporizadorToqueUnico = null;
 
   var FASES = [
-    { texto: 'Iniciando sesión…', retraso: 1400 },
-    { texto: 'Reconocimiento facial…', retraso: 2800 },
-    { texto: 'Esperando…', retraso: 4200 }
+    { texto: 'Iniciando sesión…', retraso: 2400 },
+    { texto: 'Reconocimiento facial…', retraso: 3800 },
+    { texto: 'Esperando…', retraso: 5200 }
   ];
 
   function mostrarTexto(texto) {
