@@ -1,6 +1,31 @@
 /* Menú móvil, marcador de puntos y foto de los detectives, comunes a
    todas las páginas. */
 (function () {
+  // Fuente única del menú principal: se genera aquí y se reutiliza en
+  // todas las páginas, en vez de repetir el <ul> en cada HTML.
+  var MENU_ITEMS = [
+    { href: 'index.html', label: 'Inicio' },
+    { href: 'acertijos.html', label: 'Acertijos' },
+    { href: 'viajeros.html', label: 'Viajeros' },
+    { href: 'contacto.html', label: 'Contacto' }
+  ];
+
+  function renderMenu(nav) {
+    var activo = nav.getAttribute('data-active') || location.pathname.split('/').pop() || 'index.html';
+    var ul = document.createElement('ul');
+    MENU_ITEMS.forEach(function (item) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      if (item.href === activo) a.setAttribute('aria-current', 'page');
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.innerHTML = '';
+    nav.appendChild(ul);
+  }
+
   function actualizarBadge() {
     var badge = document.getElementById('header-points');
     if (!badge || !window.AcertijosStore) return;
@@ -22,6 +47,8 @@
   document.addEventListener('DOMContentLoaded', function () {
     var toggle = document.getElementById('nav-toggle');
     var nav = document.getElementById('main-nav');
+
+    if (nav) renderMenu(nav);
 
     if (toggle && nav) {
       toggle.addEventListener('click', function () {

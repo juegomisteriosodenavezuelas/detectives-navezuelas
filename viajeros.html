@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viajeros — Detectives de Navezuelas</title>
+<meta name="description" content="Cuatro viajeros misteriosos, cuatro rutas por el mundo, cuatro secretos por descubrir en la investigación de los Detectives de Navezuelas.">
+<link rel="icon" href="Detective.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap');
+  .viajeros-contenido * { box-sizing:border-box; }
+  .viajeros-contenido { font-family:'Crimson Text',Georgia,serif; background:#f5efe0; padding:30px 20px; }
+  .viajeros-contenido .carta { max-width:750px; margin:0 auto; }
+
+  /* TARJETA INTRODUCCIÓN */
+  .viajeros-contenido .intro-card { background:linear-gradient(135deg,#2c3e50,#3d5a80); color:white; border-radius:12px; padding:36px 40px; margin-bottom:32px; text-align:center; }
+  .viajeros-contenido .intro-card h1 { font-family:'Cinzel',serif; font-size:1.7em; letter-spacing:3px; margin-bottom:16px; color:#f0d080; }
+  .viajeros-contenido .intro-card p { font-size:1.08em; line-height:1.85; color:#e8e8e8; margin-bottom:12px; }
+  .viajeros-contenido .intro-card .aviso { background:rgba(255,255,255,0.1); border-left:3px solid #f0d080; padding:14px 18px; margin-top:20px; font-style:italic; font-size:1em; color:#f0d080; text-align:left; border-radius:4px; }
+
+  /* VIAJEROS */
+  .viajeros-contenido .viajero { background:#fdf8f0; border:1px solid #d4b896; border-radius:8px; padding:28px 32px; margin-bottom:24px; position:relative; }
+  .viajeros-contenido .viajero::before { content:''; position:absolute; top:8px; left:8px; right:8px; bottom:8px; border:1px solid #e8d5b7; border-radius:6px; pointer-events:none; }
+  .viajeros-contenido .viajero-titulo { font-family:'Cinzel',serif; color:#8B6914; font-size:1.15em; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+  .viajeros-contenido .emoji { font-size:1.4em; }
+  .viajeros-contenido p { color:#3a2e1e; font-size:1.05em; line-height:1.85; margin-bottom:12px; }
+
+  .viajeros-contenido .cierre { text-align:center; margin-top:30px; font-style:italic; color:#8B6914; font-size:1.1em; border-top:1px solid #d4b896; padding-top:20px; }
+  @media print { .viajeros-contenido { background:white; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-bar">
+    <a class="brand" href="index.html">
+      <img src="Detective.png" alt="Los Detectives de Navezuelas" class="brand-logo">
+      <span class="brand-text">Los Detectives<br><small>de Navezuelas</small></span>
+    </a>
+    <span class="points-badge" id="header-points">★ 0 pts</span>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+      <span class="visually-hidden">Abrir menú</span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="main-nav" id="main-nav"></nav>
+</header>
+
+<main class="viajeros-contenido">
+<div class="carta">
+
+  <!-- TARJETA INTRODUCCIÓN -->
+  <div class="intro-card">
+    <h1>🌍 Los Cuatro Viajeros Misteriosos 🌍</h1>
+    <p>Cuatro exploradores han recorrido el mundo por cuenta propia. Cada uno ha hecho su propio viaje, ha visitado sus propias ciudades y ha vivido sus propias aventuras. Sus historias no tienen nada que ver entre sí.</p>
+    <p>Pero cada uno de ellos esconde un secreto.</p>
+    <p>Vuestra misión es leer cada historia con atención y preguntaros: <strong style="color:#f0d080;">¿qué une a las ciudades que visita cada viajero?</strong> ¿Hay algo en común entre ellas? ¿Algo que las relacione más allá de la geografía?</p>
+    <div class="aviso">⚠️ Recordad: los viajes de un explorador no tienen nada que ver con los de los otros. Cada historia es independiente. Buscad el patrón dentro de cada una por separado.</div>
+  </div>
+
+  <!-- VIAJERO 1 -->
+  <div class="viajero">
+    <div class="viajero-titulo"><span class="emoji">🌎</span> El Viajero Americano</div>
+    <p>Había una vez un explorador inquieto que vivía con la maleta siempre preparada. Un buen día, decidió comenzar su aventura en <strong>Quito</strong>, la capital de Ecuador, una ciudad tan alta que parece tocar las nubes. Allí visitó el mercado de Otavalo, donde los colores de las telas brillaban como arcoíris, y subió al volcán Cotopaxi, que dormía tranquilo pero con un ojo siempre abierto.</p>
+    <p>Desde Quito, el viajero tomó un avión rumbo al norte y aterrizó en <strong>Caracas</strong>, la capital de Venezuela, donde el calor te abraza nada más bajar del avión. Se quedó un par de días paseando por el Parque Nacional El Ávila, esa montaña enorme que vigila la ciudad como un guardián silencioso.</p>
+    <p>Con el corazón lleno de aventuras, emprendió el último vuelo de su recorrido hacia el sur, muy al sur, hasta llegar a <strong>Santiago de Chile</strong>. Desde allí contempló los Andes nevados y comió tanto empanada que tuvo que descansar tres días antes de volver a casa.</p>
+  </div>
+
+  <!-- VIAJERO 2 -->
+  <div class="viajero">
+    <div class="viajero-titulo"><span class="emoji">🌍</span> El Viajero Europeo</div>
+    <p>La segunda exploradora era una mujer de pelo rizado y mochila naranja que nunca cogía el mismo medio de transporte dos veces seguidas. Un miércoles por la mañana partió desde <strong>Varsovia</strong>, la capital de Polonia, donde las calles del casco antiguo parecen sacadas de un cuento de hadas reconstruido con mucho amor después de la guerra.</p>
+    <p>Su siguiente parada fue <strong>Berlín</strong>, la capital de Alemania, donde pasó un día entero mirando los restos del Muro y preguntándose cómo una ciudad puede partirse en dos y volver a unirse. Luego cogió un tren hasta <strong>Berna</strong>, la capital de Suiza, donde los osos campan a sus anchas por la ciudad y los relojes marcan la hora más precisa del mundo. Pero todo era tan caro que casi se le acaba el dinero antes de cenar.</p>
+    <p>Sin pensárselo dos veces, alquiló un coche y condujo hasta <strong>Roma</strong>, la capital de Italia, donde se quedó tres días lanzando monedas a la Fontana di Trevi, comiendo gelato y perdiéndose entre ruinas milenarias. Luego voló a <strong>Belgrado</strong>, la capital de Serbia, donde pasó una noche oyendo música en los barcos del río Sava.</p>
+    <p>A la mañana siguiente cogió un taxi hasta <strong>Viena</strong>, la capital de Austria, y allí se quedó cinco días escuchando valses, paseando por el Palacio de Schönbrunn y bebiendo café con nata en las cafeterías más elegantes de Europa. Por último, decidió terminar su recorrido en <strong>Luxemburgo</strong>, la capital del país más pequeño del continente... aunque le hubiera gustado parar antes.</p>
+  </div>
+
+  <!-- VIAJERO 3 -->
+  <div class="viajero">
+    <div class="viajero-titulo"><span class="emoji">🌍</span> El Viajero Africano</div>
+    <p>El tercer explorador era un hombre con sombrero de paja y cuaderno de notas que llenaba de dibujos y palabras en cada ciudad que visitaba. Comenzó su viaje en <strong>Rabat</strong>, la capital de Marruecos, donde se perdió tres días entre las medinas, los zocos y el olor a especias que flotaba por todas las callejuelas. No tenía prisa. Nunca la tenía.</p>
+    <p>Después voló hasta <strong>El Cairo</strong>, la capital de Egipto, donde las pirámides le dejaron sin palabras. Las miró durante horas preguntándose cómo era posible que unos humanos sin grúas ni máquinas modernas hubieran construido algo tan enorme y tan perfecto.</p>
+    <p>Desde allí voló hacia el corazón de África, hasta <strong>Yaundé</strong>, la capital de Camerún, conocida como "la ciudad de las siete colinas". Buscaba a alguien: un antiguo conocido llamado D. Antoine, que según le habían dicho vivía por allí. Pero nada, que nadie sabía de él.</p>
+    <p>Le dijeron que D. Antoine se había marchado a recorrer <strong>Nairobi</strong>, la capital de Kenia, así que allí fue nuestro explorador. Tampoco le encontró, pero sí a un chamán de una tribu local que le leyó el futuro en las estrellas y le dijo que su destino estaba al sur, muy al sur.</p>
+    <p>Y así llegó hasta <strong>Ciudad del Cabo</strong>, una ciudad curiosísima: forma parte de un país, Sudáfrica, que tiene no una, ni dos, sino ¡tres capitales diferentes! Pretoria, Bloemfontein y Ciudad del Cabo. Allí, mirando el océano, el explorador cerró su cuaderno y sonrió. D. Antoine tendría que esperar.</p>
+  </div>
+
+  <!-- VIAJERO 4 -->
+  <div class="viajero">
+    <div class="viajero-titulo"><span class="emoji">🌏</span> El Viajero Asiático</div>
+    <p>La cuarta exploradora era una joven con gafas redondas y una colección de postales de todos los países del mundo. Su aventura comenzó en <strong>Ulán Bator</strong>, la capital de Mongolia, una ciudad rodeada de estepas infinitas donde el viento sopla tan fuerte que parece que te quiere contar un secreto. Pasó dos días allí antes de subirse a un tren.</p>
+    <p>Ese tren la llevó hasta <strong>Astana</strong>, la capital de Kazajistán, una ciudad futurista en medio de la nada, con edificios que parecen sacados de una película de ciencia ficción. Allí tuvo la suerte de ver un partido de Champions League, y para su sorpresa, el equipo local ganó al Barcelona por dos goles. ¡Nadie se lo esperaba!</p>
+    <p>Desde allí voló hasta <strong>Kabul</strong>, la capital de Afganistán, una ciudad con una historia tan larga y tan complicada que llenaría miles de libros. Luego emprendió camino hacia <strong>Timbu</strong>, la capital de Bután, un pequeño reino en las montañas del Himalaya donde la felicidad es tan importante que el gobierno la mide oficialmente. Pasó cinco días rodeada de sherpas, monasterios y montañas que rozaban las nubes.</p>
+    <p>Por último, voló hasta <strong>Bangkok</strong>, la capital de Tailandia, donde los templos dorados brillan bajo el sol y los mercados flotantes venden de todo. Después de seis días explorando la ciudad, se subió a un barco y navegó hasta <strong>Sri Lanka</strong>, una isla preciosa que también tiene dos capitales: Colombo y Sri Jayawardenepura Kotte. Allí terminó su aventura, con los pies en la arena y la mirada en el horizonte.</p>
+  </div>
+
+  <div class="cierre">
+    <p>Cuatro viajeros. Cuatro rutas. Cuatro secretos.</p>
+    <p style="margin-top:10px;">Pensad bien en lo que habéis leído...<br>porque pronto lo vais a necesitar.</p>
+    <p style="margin-top:16px;">Con mucho cariño,<br><em>Alguien que os quiere ver felices</em></p>
+  </div>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">🕵️ Los Detectives de Navezuelas</div>
+  <p>Cuartel general de la investigación · Villuercas, Extremadura</p>
+</footer>
+
+<script src="js/acertijos-data.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/acertijos-store.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
